@@ -11,6 +11,11 @@ app.use(parser.json());
 // });
 
 // Retrieving songs api
+
+app.get("/", (req, res) => {
+  res.redirect("/api/song");
+});
+
 app.get("/api/song", (req, res) => {
   Song.find({})
     .then(items => {
