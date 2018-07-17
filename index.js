@@ -2,10 +2,23 @@ const express = require("express");
 const app = express();
 const parser = require("body-parser");
 
+const Song = require("./models/Song");
+
 app.use(parser.json());
 
-app.get("/", (request, response) => {
-  response.send("Hello World");
+// app.get("/", (request, response) => {
+//   response.send("Hello World");
+// });
+
+// Retrieving songs api
+app.get("/api/song", (req, res) => {
+  Song.find({})
+    .then(items => {
+      res.json(items);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 //When Heroku starts your app it will automatically assign a port to process.env.PORT (an environmental variable!)
