@@ -1,4 +1,4 @@
-const mongoose = require(".../db/connection.js"); // requiring connection.js and saving it to a mongoose variable
+const mongoose = require("../db/connection.js"); // requiring connection.js and saving it to a mongoose variable
 const Schema = mongoose.Schema; // importing Schema from mongoose.Schema
 
 const Song = new Schema({
