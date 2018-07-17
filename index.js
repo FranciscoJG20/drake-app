@@ -8,6 +8,12 @@ app.get("/", (request, response) => {
   response.send("Hello World");
 });
 
-app.listen(4000, () => {
-  console.log("app listening on port 4000");
+//When Heroku starts your app it will automatically assign a port to process.env.PORT (an environmental variable!)
+//to be used in production. We can modify app.listen to
+//accomodate Heroku's production port and our own local development port.
+
+app.set("port", process.env.PORT || 4000);
+
+app.listen(app.get("port"), () => {
+  console.log(`✅ PORT: ${app.get("port")} 🌟`);
 });
