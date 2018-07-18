@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
 const parser = require("body-parser");
+const cors = require("cors");
 
 const Song = require("./models/Song");
 
 app.use(parser.json());
+app.use(cors());
 
 // redirecting landing page to api/songs page
 app.get("/", (req, res) => {
