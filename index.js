@@ -23,7 +23,7 @@ app.get("/api/song", (req, res) => {
 });
 
 // posting a new song
-app.post("/", (req, res) => {
+app.post("/api/song", (req, res) => {
   Song.create(req.body)
     .then(item => {
       res.json(item);
