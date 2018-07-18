@@ -10,12 +10,16 @@ app.use(parser.json());
 //   response.send("Hello World");
 // });
 
-// Retrieving songs api
-
+// redirecting landing page to api/songs page
 app.get("/", (req, res) => {
   res.redirect("/api/song");
 });
 
+app.get("/:name", (req, res) => {
+  res.send(`hello ${req.params.name}`);
+});
+
+// Retrieving songs api
 app.get("/api/song", (req, res) => {
   Song.find({})
     .then(items => {
@@ -25,6 +29,12 @@ app.get("/api/song", (req, res) => {
       console.log(err);
     });
 });
+
+// posting new songs
+
+// app.post("/", (req, res) => {
+//   Song.
+// })
 
 //When Heroku starts your app it will automatically assign a port to process.env.PORT (an environmental variable!)
 //to be used in production. We can modify app.listen to
