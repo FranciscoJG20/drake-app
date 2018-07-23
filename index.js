@@ -26,7 +26,9 @@ app.get("/api/song", (req, res) => {
 
 // posting a new song
 app.post("/api/song", (req, res) => {
-  Song.create(req.body)
+  Song.create({
+    name: req.body.name
+  })
     .then(item => {
       res.json(item);
     })
