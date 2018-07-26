@@ -24,6 +24,16 @@ app.get("/api/song", (req, res) => {
     });
 });
 
+app.get("/api/song/:id", (req, res) => {
+  Song.findById(req.params.id)
+    .then(item => {
+      res.json(item);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 // posting a new song
 app.post("/api/song", (req, res) => {
   Song.create({
@@ -50,7 +60,7 @@ app.delete("/api/song/:id", (req, res) => {
         message: "Song not found with id" + req.params.id
       });
     }
-    res.send({ message: "Note deleted successfully" }).catch(err => {
+    res.send({ message: "song deleted successfully" }).catch(err => {
       console.log(err);
     });
   });
