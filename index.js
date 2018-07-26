@@ -43,20 +43,18 @@ app.post("/api/song", (req, res) => {
 // send response (console log or "hey you just deleted song")
 // .catch for errors
 
-app.delete("/api/song/:id",(req, res) => {
-    Song.findByIdAndRemove((req.params.id))
-    .then(song => {
-      if (!song) {
-        return res.status(404).send({
-          message: "Song not found with id" + req.params.id
-        });
-      }
-      res.send({message: "Note deleted successfully"});
-      .catch(err => {
-        console.log(err);
-      })
-    })
+app.delete("/api/song/:id", (req, res) => {
+  Song.findByIdAndRemove(req.params.id).then(song => {
+    if (!song) {
+      return res.status(404).send({
+        message: "Song not found with id" + req.params.id
+      });
+    }
+    res.send({ message: "Note deleted successfully" }).catch(err => {
+      console.log(err);
+    });
   });
+});
 
 //When Heroku starts your app it will automatically assign a port to process.env.PORT (an environmental variable!)
 //to be used in production. We can modify app.listen to
